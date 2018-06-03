@@ -29,4 +29,22 @@ class Client::ProductsController < ApplicationController
     render "create.html.erb"
   end
 
+  def edit
+    response = Unirest.get("http://localhost:3000/api/products/#{params[:id]}")
+    @product = response.body
+    render "edit.html.erb"
+  end
+
+  def update
+    product_params = {
+      name: params["name"],
+      category: params["category"],
+      price: params["price"],
+      description: params["description"],
+      color: params["color"]
+    }
+    response = Unirest.patch("http://localhost:3000/api/products/#{params['id']}", parameters: product_params).body
+    render "update.html.erb"
+  end    
+
 end
