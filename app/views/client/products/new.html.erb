@@ -1,0 +1,21 @@
+<h2> New Product Creation </h2>
+
+<%= form_tag "/client/products", method: :post do %>
+  <div>
+    Name: <input type="text" name="name" />
+  </div> 
+  <div>
+    Category: <input type="text" name="category" />
+  </div>
+   <div>
+    Price: <input type="text" name="price" />
+  </div>
+ <div>
+    Description: <input type="text" name="description" />
+  </div>
+ <div>
+    Color: <input type="text" name="color" />
+  </div>
+  <br>
+  <input type="submit" name="" value="Create Product" />
+  <% end %>

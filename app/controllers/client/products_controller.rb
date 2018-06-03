@@ -1,0 +1,32 @@
+class Client::ProductsController < ApplicationController
+
+  def index
+    response = Unirest.get("http://localhost:3000/api/products")
+    @products = response.body
+    render "index.html.erb"
+  end
+
+  def show
+    product_id = params[:id]
+    response = Unirest.get("http://localhost:3000/api/products/#{product_id}")
+    @product = response.body
+    render "show.html.erb"
+  end
+
+  def new
+    render "new.html.erb"
+  end
+
+  def create
+    product_params = {
+      name: params["name"],
+      category: params["category"],
+      price: params["price"],
+      description: params["description"],
+      color: params["color"]
+    }
+    response = Unirest.post("http://localhost:3000/api/products", parameters: product_params).body
+    render "create.html.erb"
+  end
+
+end
