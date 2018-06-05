@@ -4,9 +4,11 @@
   
   <h2><a href="/client/products/<%= product['id'] %>">Name: <%= product["name"] %></a></h2>
   <h3>Category: <%= product["category"] %></h3>
-  <b>Price: <%= product["price"] %><br>
+  <p>Price: <%= product["price"] %><br>
+  Sales Tax: <%= product["formatted"]["sales_tax"] %><br> 
   Description: <%= product["description"] %><br>
-  Color: <%= product["color"] %></b>
+  Color: <%= product["color"] %><br>
+  Sales Message: <%= product["formatted"]["sales_message"] %></p>
 <% end %>
 <br><br>
 <a href="/client/products/new">Add Product</a>
