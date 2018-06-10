@@ -4,11 +4,14 @@
 
 <h2>Name: <%= @product["name"] %></h2>
 <h3>Category: <%= @product["category"] %></h3>
-<b>Price: <% if @product["price"] < 100 %> <font color="red"> <% end %> <%=@product["price"] %></font><br>
+<b>Price: <% if @product["price"].to_i < 100 %> <font color="red"> <% end %> <%=@product["price"] %></font><br>
 Sales Tax: <%= @product["formatted"]["sales_tax"] %><br>
 Total Price: <%= @product["formatted"]["total_price"] %><br>
 Description: <%= @product["description"] %><br>
-Color: <%= @product["color"] %></b>
+Color: <%= @product["color"] %></b><br>
+  <% @product["images"].each do |image| %>
+    <img src="<%=image["url"]%>">
+  <% end %>
 <br>
 <br>
 <a href="/client/products/<%= @product['id']%>/edit">Edit Product</a>

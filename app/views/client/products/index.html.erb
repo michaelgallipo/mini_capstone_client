@@ -1,5 +1,14 @@
 <img src="http://www.salamancany.org/cms/lib/NY19001352/Centricity/Domain/252/lacrosse%202.jpg">
 
+<div>
+  <%= form_tag "/client/products", method: :get do %>
+    <input type="text" name="search">
+    <input type="submit" value="Search by Product Name">
+  <% end %>
+  <a href="/client/products/?sort_by_price=true">Click to sort by price</a>
+</div>
+
+
 <% @products.each do |product| %>
   
   <h2><a href="/client/products/<%= product['id'] %>">Name: <%= product["name"] %></a></h2>
@@ -8,7 +17,10 @@
   Sales Tax: <%= product["formatted"]["sales_tax"] %><br> 
   Description: <%= product["description"] %><br>
   Color: <%= product["color"] %><br>
-  Sales Message: <%= product["formatted"]["sales_message"] %></p>
+  Sales Message: <%= product["formatted"]["sales_message"] %></p><br>
+  <% product["images"].each do |image| %>
+    <img src="<%=image["url"]%>">
+  <% end %>
 <% end %>
 <br><br>
 <a href="/client/products/new">Add Product</a>

@@ -1,8 +1,11 @@
 class Client::ProductsController < ApplicationController
 
   def index
-    response = Unirest.get("http://localhost:3000/api/products")
-    @products = response.body
+    product_params = {
+      search: params[:search],
+      sort_by_price: params[:sort_by_price]
+    }
+    @products = Unirest.get("http://localhost:3000/api/products", parameters: product_params).body
     render "index.html.erb"
   end
 
@@ -42,7 +45,8 @@ class Client::ProductsController < ApplicationController
       category: params["category"],
       price: params["price"],
       description: params["description"],
-      color: params["color"]
+      color: params["color"],
+      supplier_id: params["supplier_id"]
     }
     response = Unirest.patch("http://localhost:3000/api/products/#{params['id']}", parameters: product_params).body
     flash[:message] = "Proudct successfully updated"
