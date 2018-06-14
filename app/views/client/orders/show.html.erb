@@ -1,6 +1,13 @@
-<h2>User Id: <%= @order["user_id"] %></h2>
-<h2>Product Id: <%= @order["product_id"] %></h2>
-<h3>Quantity: <%= @order["quantity"] %></h2>
-<b>subtotal: <%= @order["subtotal"] %><br>
-<b>tax: <%= @order["tax"] %><br>
-<b>total: <%= @order["total"] %></b>
+<h4>Order Date - <%= @order["invoice"]["order_date"] %></h4>
+<h2>Customer: <%= @order["invoice"]["customer"] %> &emsp; Id: <%= @order["user_id"] %><br>
+  <%= @order["invoice"]["customer_email"] %>
+</h2>
+<h3>Product: <%= @order["invoice"]["product_name"] %> &emsp;  Id: <%= @order["product_id"] %><br>
+  Product Price: <%= @order["invoice"]["product_price"] %><br>
+Quantity: <%= @order["quantity"] %></h3><br>
+<img src="<%=@order["invoice"]["image"]%>" style="width:200px;height:200px;"><br><br>
+<b>subtotal: <%= @order["invoice"]["subtotal"] %><br>
+<b>tax: <%= @order["invoice"]["tax"] %><br>
+<b>total: <%= @order["invoice"]["total"] %></b>
+<br><br>
+<h4><a href="/client/products">Products Index</a></h4>

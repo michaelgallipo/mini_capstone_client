@@ -1,4 +1,4 @@
-<img src="http://www.salamancany.org/cms/lib/NY19001352/Centricity/Domain/252/lacrosse%202.jpg">
+<img src="http://www.salamancany.org/cms/lib/NY19001352/Centricity/Domain/252/lacrosse%202.jpg" style="width:350px;height:250px;"">
 
 <div>
   <%= form_tag "/client/products", method: :get do %>
@@ -19,7 +19,7 @@
   Color: <%= product["color"] %><br>
   Sales Message: <%= product["formatted"]["sales_message"] %></p><br>
   <% product["images"].each do |image| %>
-    <img src="<%=image["url"]%>">
+    <img src="<%=image["url"]%>" style="width:150px;height:150px;">
   <% end %>
 <% end %>
 <br><br>
