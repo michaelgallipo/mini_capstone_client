@@ -17,3 +17,14 @@ Color: <%= @product["color"] %></b><br>
 <a href="/client/products/<%= @product['id']%>/edit">Edit Product</a>
 <a href="/client/products/<%= @product['id']%>" data-method="delete">Delete Product</a>
 <h4><a href="/client/products">Products Index</a></h4>
+
+<h2>Create an order for this product:</h2>
+<%= form_tag "/client/orders", method: :post do %>
+  <div>
+    Product Id: <input type="number" name="product_id" value="<%= @product['id'] %>" />
+  </div>
+  <div>
+    Quantity: <input type="number" name="quantity" />
+  </div>
+  <input type="submit" name="" value="Create Order" />
+<% end %>
