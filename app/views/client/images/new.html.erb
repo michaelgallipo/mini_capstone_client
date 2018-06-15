@@ -1,0 +1,12 @@
+<h2> New Image Addition </h2>
+
+<%= form_tag "/client/images", method: :post do %>
+  <div>
+    Image Url: <input type="text" name="url" />
+  </div> 
+  <div>
+    Product ID: <input type="text" name="product_id" />
+  </div>
+  <br>
+  <input type="submit" name="" value="Add Image" />
+  <% end %>
