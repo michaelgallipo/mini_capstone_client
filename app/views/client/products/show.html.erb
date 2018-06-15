@@ -10,7 +10,7 @@ Total Price: <%= @product["formatted"]["total_price"] %><br>
 Description: <%= @product["description"] %><br>
 Color: <%= @product["color"] %></b><br>
   <% @product["images"].each do |image| %>
-    <img src="<%=image["url"]%>">
+    <img src="<%=image["url"]%>" style="width:200px;height:200px;">
   <% end %>
 <br>
 <br>
