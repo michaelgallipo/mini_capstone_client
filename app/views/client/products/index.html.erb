@@ -12,7 +12,11 @@
 <% @products.each do |product| %>
   
   <h2><a href="/client/products/<%= product['id'] %>">Name: <%= product["name"] %></a></h2>
-  <h3>Category: <%= product["category"] %></h3>
+  <h3>Category: 
+    <% product["categories"].each do |cat| %>
+      <%= cat["name"] %>&emsp;
+      <% end %>
+    </h3>
   <p>Price: <%= product["price"] %><br>
   Sales Tax: <%= product["formatted"]["sales_tax"] %><br> 
   Description: <%= product["description"] %><br>

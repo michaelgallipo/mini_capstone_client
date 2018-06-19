@@ -23,7 +23,6 @@ class Client::ProductsController < ApplicationController
   def create
     product_params = {
       name: params["name"],
-      category: params["category"],
       price: params["price"],
       description: params["description"],
       color: params["color"]
@@ -42,7 +41,6 @@ class Client::ProductsController < ApplicationController
   def update
     product_params = {
       name: params["name"],
-      category: params["category"],
       price: params["price"],
       description: params["description"],
       color: params["color"],

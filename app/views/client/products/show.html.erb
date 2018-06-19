@@ -3,7 +3,11 @@
 <h1><%= @product["formatted"]["sales_message"] %></h1>
 
 <h2>Name: <%= @product["name"] %></h2>
-<h3>Category: <%= @product["category"] %></h3>
+<h3>Category: 
+  <% @product["categories"].each do |cat| %>
+    <%= cat["name"] %>&emsp;
+    <% end %>
+  </h3>
 <b>Price: <% if @product["price"].to_i < 100 %> <font color="red"> <% end %> <%=@product["price"] %></font><br>
 Sales Tax: <%= @product["formatted"]["sales_tax"] %><br>
 Total Price: <%= @product["formatted"]["total_price"] %><br>
@@ -18,13 +22,15 @@ Color: <%= @product["color"] %></b><br>
 <a href="/client/products/<%= @product['id']%>" data-method="delete">Delete Product</a>
 <h4><a href="/client/products">Products Index</a></h4>
 
-<h2>Create an order for this product:</h2>
-<%= form_tag "/client/orders", method: :post do %>
+
+<h4> Add Product to Cart</h4>
+
+<%= form_tag "/client/carted_products", method: :post do %>
   <div>
-    Product Id: <input type="number" name="product_id" value="<%= @product['id'] %>" />
+    Product Id: <input type="hidden" name="product_id" value="<%= @product['id'] %>"/>
   </div>
   <div>
     Quantity: <input type="number" name="quantity" />
   </div>
-  <input type="submit" name="" value="Create Order" />
+  <input type="submit" name="" value="Add to Cart" />
 <% end %>

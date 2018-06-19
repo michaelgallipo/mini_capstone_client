@@ -17,6 +17,10 @@ Rails.application.routes.draw do
     get "images/new" => "images#new"
     post "images" => "images#create"
     get "images/:id" => "images#show"
+
+    get "carted_products/new" => "carted_products#new"
+    post "carted_products" => "carted_products#create"
+    get "carted_products/:id" => "carted_products#show"
   end
 
   get "/signup" => "users#new"
