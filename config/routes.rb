@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     post "images" => "images#create"
     get "images/:id" => "images#show"
 
+    get "carted_products" => "carted_products#index"
     get "carted_products/new" => "carted_products#new"
     post "carted_products" => "carted_products#create"
     get "carted_products/:id" => "carted_products#show"

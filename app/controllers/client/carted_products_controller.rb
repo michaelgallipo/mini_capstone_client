@@ -1,5 +1,14 @@
 class Client::CartedProductsController < ApplicationController
 
+  def index
+    # product_params = {
+    #   search: params[:search],
+    #   sort_by_price: params[:sort_by_price]
+    # }
+    @carted_products = Unirest.get("http://localhost:3000/api/carted_products").body
+    render "index.html.erb"
+  end
+
   def show
     carted_product_id = params[:id]
     @carted_product = Unirest.get("http://localhost:3000/api/carted_products/#{carted_product_id}").body
@@ -18,8 +27,7 @@ class Client::CartedProductsController < ApplicationController
 
     @carted_product = Unirest.post("http://localhost:3000/api/carted_products", parameters: cart_params).body
     flash[:message] = "Product added to cart"
-    render 'show.html.erb'
-
+    redirect_to "/client/carted_products/"
   end
 
 

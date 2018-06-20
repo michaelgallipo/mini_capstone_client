@@ -1,0 +1,10 @@
+<h1>Shopping Cart</h1>
+
+<% @carted_products.each do |carted_product| %>
+  <h2>Cart ID: <%= carted_product['id'] %></h2>
+  <h3>Product Info: <%= carted_product['product_id'] %>&emsp;<%= carted_product['product']['name'] %></h3>
+  <h4>Quantity: <%= carted_product['quantity'] %></h4>
+  <h4>User ID: <%= carted_product['user_id'] %></h4>
+<% end %>
+
+<h4><a href="/client/orders" data-method="post">Order Products</a>&emsp;<a href="/client/products">Continue Shopping</a></h4>

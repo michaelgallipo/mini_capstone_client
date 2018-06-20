@@ -12,12 +12,8 @@ class Client::OrdersController < ApplicationController
   end
 
   def create
-    order_params = {
-      product_id: params["product_id"],
-      quantity: params[:quantity],
-    }
 
-    @order = Unirest.post("http://localhost:3000/api/orders", parameters: order_params).body
+    @order = Unirest.post("http://localhost:3000/api/orders").body
     flash[:message] = "Order sucessfully created"
     redirect_to "/client/orders/#{@order['id']}"
   end
