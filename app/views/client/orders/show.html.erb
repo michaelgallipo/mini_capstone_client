@@ -4,6 +4,11 @@
 </h2>
 <b>subtotal: <%= @order["invoice"]["subtotal"] %><br>
 <b>tax: <%= @order["invoice"]["tax"] %><br>
-<b>total: <%= @order["invoice"]["total"] %></b>
+<b>total: <%= @order["invoice"]["total"] %></b><br><br>
+<% @order['carted_products'].each do |carted_product| %>
+<b>Product Name:<%= carted_product['product']['name'] %><br>
+Product Price:<%= carted_product['product']['price'] %><br>
+Quantity:<%= carted_product['quantity'] %></b><br><br>
+<% end %>
 <br><br>
 <h4><a href="/client/products">Products Index</a></h4>

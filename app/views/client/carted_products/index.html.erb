@@ -5,6 +5,7 @@
   <h3>Product Info: <%= carted_product['product_id'] %>&emsp;<%= carted_product['product']['name'] %></h3>
   <h4>Quantity: <%= carted_product['quantity'] %></h4>
   <h4>User ID: <%= carted_product['user_id'] %></h4>
+  <a href="/client/carted_products/<%=carted_product['id'] %>" data-method="delete">remove from cart</a><br>
 <% end %>
 
 <h4><a href="/client/orders" data-method="post">Order Products</a>&emsp;<a href="/client/products">Continue Shopping</a></h4>
