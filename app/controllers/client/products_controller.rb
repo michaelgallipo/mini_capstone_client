@@ -17,19 +17,36 @@ class Client::ProductsController < ApplicationController
   end
 
   def new
+    @product = {
+      "name" => params[:name],
+      "price" => params[:price],
+      "description" => params[:description],
+      "color" => params[:color],
+      "supplier_id" => params[:supplier_id]
+    }
+
     render "new.html.erb"
   end
 
   def create
-    product_params = {
-      name: params["name"],
-      price: params["price"],
-      description: params["description"],
-      color: params["color"]
+    @product = {
+      "name" => params[:name],
+      "price" => params[:price],
+      "description" => params[:description],
+      "color" => params[:color],
+      "supplier_id" => params[:supplier_id]
     }
-    response = Unirest.post("http://localhost:3000/api/products", parameters: product_params).body
-    flash[:message] = "Product sucessfully created"
-    redirect_to "/client/products/#{response['id']}"
+
+    response = Unirest.post("http://localhost:3000/api/products", parameters: @product)
+
+    if response.code == 200
+      flash[:message] = "Product sucessfully created"
+      redirect_to "/client/products/"
+    else
+      @errors = response.body['errors']
+      render "new.html.erb"
+    end
+
   end
 
   def edit
@@ -39,16 +56,22 @@ class Client::ProductsController < ApplicationController
   end
 
   def update
-    product_params = {
-      name: params["name"],
-      price: params["price"],
-      description: params["description"],
-      color: params["color"],
-      supplier_id: params["supplier_id"]
+    @product = {
+      "id" => params[:id],
+      "name" => params[:name],
+      "price" => params[:price],
+      "description" => params[:description],
+      "color" => params[:color],
+      "supplier_id" => params[:supplier_id]
     }
-    response = Unirest.patch("http://localhost:3000/api/products/#{params['id']}", parameters: product_params).body
-    flash[:message] = "Proudct successfully updated"
-    redirect_to "/client/products/#{response['id']}"
+    response = Unirest.patch("http://localhost:3000/api/products/#{params['id']}", parameters: @product)
+    if response.code == 200
+      flash[:message] = "Proudct successfully updated"
+      redirect_to "/client/products/#{params[:id]}"
+    else
+      @errors = response.body['errors']
+      render "edit.html.erb" 
+    end
   end    
 
   def destroy

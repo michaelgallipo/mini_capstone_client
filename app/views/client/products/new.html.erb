@@ -1,20 +1,28 @@
 <h2> New Product Creation </h2>
 
+<% if @errors %>
+  <ul>
+    <% @errors.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_tag "/client/products", method: :post do %>
   <div>
-    Name: <input type="text" name="name" />
+    Name: <input type="text" name="name" value="<%=@product['name'] %>"/>
   </div> 
    <div>
-    Price: <input type="text" name="price" />
+    Price: <input type="text" name="price" value="<%=@product['price'] %>"/>
   </div>
  <div>
-    Description: <input type="text" name="description" />
+    Description: <input type="text" name="description" value="<%=@product['description'] %>"/>
   </div>
  <div>
-    Color: <input type="text" name="color" />
+    Color: <input type="text" name="color" value="<%=@product['color'] %>"/>
   </div>
    <div>
-    Supplier Id: <input type="number" name="supplier_id" />
+    Supplier Id: <input type="number" name="supplier_id" value="<%=@product['supplier_id'] %>"/>
   </div>
   <br>
   <input type="submit" name="" value="Create Product" />

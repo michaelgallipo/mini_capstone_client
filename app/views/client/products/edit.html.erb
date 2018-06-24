@@ -1,5 +1,13 @@
 <h2> Edit Product </h2>
 
+<% if @errors %>
+  <ul>
+    <% @errors.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_tag "/client/products/#{@product['id']}", method: :patch do %>
   <div>
     Name: <input type="text" name="name" value="<%= @product['name'] %>"/>
@@ -14,7 +22,7 @@
     Color: <input type="text" name="color" value="<%= @product['color'] %>" />
   </div>
   <dic>
-    Supplier Id: <input type="number" name="supplier_id" value="<%= @product['supplier']['id'] %>" />
+    Supplier Id: <input type="number" name="supplier_id" value="<%= @product['supplier_id'] %>" />
   </div>
   <br>
   <input type="submit" name="" value="Edit Product" />
