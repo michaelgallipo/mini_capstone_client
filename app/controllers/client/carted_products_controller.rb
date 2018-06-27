@@ -26,8 +26,14 @@ class Client::CartedProductsController < ApplicationController
     }
 
     @carted_product = Unirest.post("http://localhost:3000/api/carted_products", parameters: cart_params).body
-    flash[:message] = "Product added to cart"
-    redirect_to "/client/carted_products/"
+
+    if @carted_product.code == 200
+      flash[:message] = "Product added to cart"
+      redirect_to "/client/carted_products/"
+    else
+      flash[:message] = "Must be logged in to place item in cart"
+      redirect_to "/client/products/"
+    end
   end
 
   def destroy

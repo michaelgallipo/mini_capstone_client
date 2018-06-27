@@ -68,6 +68,9 @@ class Client::ProductsController < ApplicationController
     if response.code == 200
       flash[:message] = "Proudct successfully updated"
       redirect_to "/client/products/#{params[:id]}"
+    elsif response.code == 401
+      flash[:message] = "Not Authorized to Edit Product Information"
+      redirect_to "/client/products/"
     else
       @errors = response.body['errors']
       render "edit.html.erb" 
